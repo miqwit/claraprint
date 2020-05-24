@@ -1,0 +1,5 @@
+librosa==0.7.2
+# This version of crema is needing librosa==0.5 and raises an error. But actually it works with librosa==0.7.2
+# and not with librosa==0.5
+crema==0.1.0
+vamp==1.1.0
