@@ -3,3 +3,4 @@ librosa==0.7.2
 # and not with librosa==0.5
 crema==0.1.0
 vamp==1.1.0
+python-Levenshtein
