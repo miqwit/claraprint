@@ -146,7 +146,7 @@ Each score contains three values, because here `num_best=[10, 5, 1]`. The first 
 found in the first 10 results (MT10 in the paper), the second one in the first 5 results (MT5) and the last one as 
 the first result (MT1) of the fingerprint search.  
 
-### Generate figures in the paper
+### Generate figures as presented in the paper
 
 #### Figure 2: Mean value of true positive in top 10 for claraprints computed on the first 30s and 120s.
 
@@ -168,9 +168,9 @@ configs_to_run = [
 ]
 ```
 
-The first 4 are testing the 4 algos against 30s claraprints, and the last 4 against 120s claraprints.
+> The first 4 are testing the 4 algos against 30s claraprints, and the last 4 against 120s claraprints.
 
-Report the first score for each in the following lines of file [figures/generate_graph_compare_algos_duration.py](generate_graph_compare_algos_duration.py):
+Report the first score for each in the following lines of file [generate_graph_compare_algos_duration.py](figures/generate_graph_compare_algos_duration.py):
 
 ```python
 chord_chordino_means = [0.66, 0.92]
@@ -179,4 +179,33 @@ melody_melodia_means = [0.60, 0.80]
 melody_piptrack_means = [0.83, 0.82]
 ```
 
-Run the script [figures/generate_graph_compare_algos_duration.py](generate_graph_compare_algos_duration.py), which will generate figure [figures/graph_compare_algos_duration.png](graph_compare_algos_duration.png)
+Run the script [generate_graph_compare_algos_duration.py](figures/generate_graph_compare_algos_duration.py), which will generate figure [graph_compare_algos_duration.png](figures/graph_compare_algos_duration.png)
+
+#### Figure 3: Mean value of true positive in top 10 (MT10) and first (MT1) position for 120s claraprints.
+
+![Figure 3](figures/graph_compare_algos.png)
+
+Run the experiment with the following configurations:
+
+```python
+configs_to_run = [
+    Config(algo="chords_chordino", duration=120, letters_to_use=1, range_words=[range(2, 8)], num_sources=[1]),
+    Config(algo="chords_crema", duration=120, letters_to_use=1, range_words=[range(2, 8)], num_sources=[1]),
+    Config(algo="melody_melodia", duration=120, letters_to_use=3, range_words=[range(2, 8)], num_sources=[1]),
+    Config(algo="melody_piptrack", duration=120, letters_to_use=3, range_words=[range(2, 8)], num_sources=[1])
+]
+```
+
+> Each configuration is searching for 120s claraprint fingerprints comparing the 4 different algos
+
+Report the first (MT10) and last (MT1) scores in file [generate_graph_compare_algos.py](figures/generate_graph_compare_algos.py):
+
+```python
+chord_chordino_means = [0.66, 0.92]
+chord_crema_means = [0.71, 0.88]
+melody_melodia_means = [0.60, 0.80]
+melody_piptrack_means = [0.83, 0.82]
+```
+
+Run the script [generate_graph_compare_algos.py](figures/generate_graph_compare_algos.py), 
+which will generate figure [graph_compare_algos_duration.png](figures/graph_compare_algos_duration.png)
