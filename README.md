@@ -152,7 +152,7 @@ the first result (MT1) of the fingerprint search.
 
 ![Figure 2](figures/graph_compare_algos_duration.png)
 
-Run the experiment with the following configurations:
+Run the [es_multiple_fp_generated](experiments/es_multiple_fp_generated/es_multiple_fp_generated.py) experiment with the following configurations:
 
 ```python
 configs_to_run = [
@@ -170,7 +170,8 @@ configs_to_run = [
 
 > The first 4 are testing the 4 algos against 30s claraprints, and the last 4 against 120s claraprints.
 
-Report the first score for each in the following lines of file [generate_graph_compare_algos_duration.py](figures/generate_graph_compare_algos_duration.py):
+Report the first score for each in the following lines of file 
+[figures/generate_graph_compare_algos_duration.py](figures/generate_graph_compare_algos_duration.py):
 
 ```python
 chord_chordino_means = [0.66, 0.92]
@@ -179,13 +180,14 @@ melody_melodia_means = [0.60, 0.80]
 melody_piptrack_means = [0.83, 0.82]
 ```
 
-Run the script [generate_graph_compare_algos_duration.py](figures/generate_graph_compare_algos_duration.py), which will generate figure [graph_compare_algos_duration.png](figures/graph_compare_algos_duration.png)
+Run the script [figures/generate_graph_compare_algos_duration.py](figures/generate_graph_compare_algos_duration.py), 
+which will generate figure [figures/graph_compare_algos_duration.png](figures/graph_compare_algos_duration.png)
 
 #### Figure 3: Mean value of true positive in top 10 (MT10) and first (MT1) position for 120s claraprints.
 
 ![Figure 3](figures/graph_compare_algos.png)
 
-Run the experiment with the following configurations:
+Run the [es_multiple_fp_generated](experiments/es_multiple_fp_generated/es_multiple_fp_generated.py) experiment with the following configurations:
 
 ```python
 configs_to_run = [
@@ -198,7 +200,7 @@ configs_to_run = [
 
 > Each configuration is searching for 120s claraprint fingerprints comparing the 4 different algos
 
-Report the first (MT10) and last (MT1) scores in file [generate_graph_compare_algos.py](figures/generate_graph_compare_algos.py):
+Report the first (MT10) and last (MT1) scores in file [figures/generate_graph_compare_algos.py](figures/generate_graph_compare_algos.py):
 
 ```python
 chord_chordino_means = [0.92, 0.84]
@@ -207,8 +209,8 @@ melody_melodia_means = [0.79, 0.58]
 melody_piptrack_means = [0.82, 0.60]
 ```
 
-Run the script [generate_graph_compare_algos.py](figures/generate_graph_compare_algos.py), 
-which will generate figure [graph_compare_algos_duration.png](figures/graph_compare_algos.png)
+Run the script [figures/generate_graph_compare_algos.py](figures/generate_graph_compare_algos.py), 
+which will generate figure [figures/graph_compare_algos_duration.png](figures/graph_compare_algos.png)
 
 #### Figure 4 Mean value of true positive in top 10 (MT10) and first (MT1) position of combined [2-7]-shingled claraprints.
 
@@ -231,7 +233,7 @@ configs_to_run = [
 
 > Each configuration is combining a chord algo with a melody algo. All configuration are tested and compared.
 
-Report the first (MT10) and last (MT1) scores in file [generate_graph_compare_algos_multiple.py](figures/generate_graph_compare_algos_multiple.py):
+Report the first (MT10) and last (MT1) scores in file [figures/generate_graph_compare_algos_multiple.py](figures/generate_graph_compare_algos_multiple.py):
 
 ```python
 ch_me_means = [0.91, 0.78]
@@ -243,14 +245,14 @@ me_mp_means = [0.83, 0.62]
 
 ```
 
-Run the script [generate_graph_compare_algos_multiple.py](figures/generate_graph_compare_algos_multiple.py), 
-which will generate figure [graph_compare_algos_multiple.png](figures/graph_compare_algos_multiple.png)
+Run the script [figures/generate_graph_compare_algos_multiple.py](figures/generate_graph_compare_algos_multiple.py), 
+which will generate figure [figures/graph_compare_algos_multiple.png](figures/graph_compare_algos_multiple.png)
 
 #### Figure 5 Mean value @10 and @1 of multiple-recording [2-7]-shingled claraprint combination, from 1 to 4 recordings of the same piece.
 
 ![Figure 5](figures/multiple_source_line.png)
 
-Run the experiment with the following configurations:
+Run the [es_multiple_fp_generated](experiments/es_multiple_fp_generated/es_multiple_fp_generated.py) experiment with the following configurations:
 
 ```python
 configs_to_run = [
@@ -263,7 +265,7 @@ configs_to_run = [
 
 > For each algorithm, 1, 2, 3 and 4 claraprints are used to generate a reference claraprint.
 
-Report the first (MT10) score for each num_source in file [generate_multiple_source_line.py](figures/generate_multiple_source_line.py):
+Report the first (MT10) score for each num_source in file [figures/generate_multiple_source_line.py](figures/generate_multiple_source_line.py):
 
 ```python
 df = pd.DataFrame({
@@ -283,8 +285,8 @@ df = pd.DataFrame({
 
 > For example, in line `'ch@MT10': np.array([0.91, 0.94, 0.97, 0.98])`, 0.91 is MT10 for algo chords_chordino (ch) for one source fingerprint, and 0.94 for two sources, etc.
 
-Run the script [generate_multiple_source_line.py](figures/generate_multiple_source_line.py), 
-which will generate figure [multiple_source_line.png](figures/multiple_source_line.png)
+Run the script [figures/generate_multiple_source_line.py](figures/generate_multiple_source_line.py), 
+which will generate figure [figures/multiple_source_line.png](figures/multiple_source_line.png)
 
 #### Figure 6 he average, minimal, maximal and standard deviation of pair-wise comparison of claraprints within the same clique, with the Levenshtein similarity algorithm (plain claraprints) and the common words in [2-7]-shingled claraprints.
 
@@ -305,3 +307,34 @@ lev_chord = np.array([[29.856, 26.357, 71.939, 105.469],
 Run the script [figures/generate_error_bar_distance.py](figures/generate_error_bar_distance.py), 
 which will generate figure [figures/error_bar_distance.png](figures/error_bar_distance.png)
 
+#### Figure 7 Ingestion and query times, in average, for each of the studied claraprint, each based on one recording.
+
+![Figure 7](figures/graph_compare_algos_times.png)
+
+Run the [es_multiple_fp_generated](experiments/es_multiple_fp_generated/es_multiple_fp_generated.py) experiment with the following configurations:
+
+```python
+configs_to_run = [
+    Config(algo="chords_chordino", duration=120, letters_to_use=1, range_words=[range(2, 8)], num_sources=[1]),
+    Config(algo="chords_crema", duration=120, letters_to_use=1, range_words=[range(2, 8)], num_sources=[1]),
+    Config(algo="melody_melodia", duration=120, letters_to_use=3, range_words=[range(2, 8)], num_sources=[1]),
+    Config(algo="melody_piptrack", duration=120, letters_to_use=3, range_words=[range(2, 8)], num_sources=[1]),
+]
+```
+
+> This is the same configuration as used in Figure 3 generation.
+
+Report the time_insert and time_query values generated by the experiment in file 
+[figures/generate_graph_compare_algos_timequery.py](figures/generate_graph_compare_algos_timequery.py):
+
+```python
+chord_chordino_means = [4.94, 4.14]
+chord_crema_means = [5.22, 4.72]
+melody_melodia_means = [6.52, 11.37]
+melody_piptrack_means = [8.08, 19.70]
+```
+
+> The average time for chords_chordino is 4.94ms for ingestion and 4.41ms for query. 
+
+Run the script [figures/generate_graph_compare_algos_timequery.py](figures/generate_graph_compare_algos_timequery.py), 
+which will generate figure [figures/graph_compare_algos_times.png](figures/graph_compare_algos_times.png)
