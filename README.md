@@ -208,11 +208,11 @@ melody_piptrack_means = [0.82, 0.60]
 ```
 
 Run the script [generate_graph_compare_algos.py](figures/generate_graph_compare_algos.py), 
-which will generate figure [graph_compare_algos_duration.png](figures/graph_compare_algos_duration.png)
+which will generate figure [graph_compare_algos_duration.png](figures/graph_compare_algos.png)
 
 #### Figure 4 Mean value of true positive in top 10 (MT10) and first (MT1) position of combined [2-7]-shingled claraprints.
 
-![Figure 4](figures/graph_compare_algos.png)
+![Figure 4](figures/graph_compare_algos_multiple.png)
 
 For this one, the used experiment is not the "usual" ones, as explained in previous section, but the one located in
 [es_cross_sources.py](experiments/es_cross_sources/es_cross_sources.py) file. It is the same logic, although the 
@@ -244,4 +244,44 @@ me_mp_means = [0.83, 0.62]
 ```
 
 Run the script [generate_graph_compare_algos_multiple.py](figures/generate_graph_compare_algos_multiple.py), 
-which will generate figure [graph_compare_algos.png](figures/graph_compare_algos.png)
+which will generate figure [graph_compare_algos_multiple.png](figures/graph_compare_algos_multiple.png)
+
+#### Figure 4 Mean value of true positive in top 10 (MT10) and first (MT1) position of combined [2-7]-shingled claraprints.
+
+![Figure 5](figures/multiple_source_line.png)
+
+Run the experiment with the following configurations:
+
+```python
+configs_to_run = [
+    Config(algo="chords_chordino", duration=120, letters_to_use=1, range_words=[range(2, 8)], num_sources=[1, 2, 3, 4]),
+    Config(algo="chords_crema", duration=120, letters_to_use=1, range_words=[range(2, 8)], num_sources=[1, 2, 3, 4]),
+    Config(algo="melody_melodia", duration=120, letters_to_use=3, range_words=[range(2, 8)], num_sources=[1, 2, 3, 4]),
+    Config(algo="melody_piptrack", duration=120, letters_to_use=3, range_words=[range(2, 8)], num_sources=[1, 2, 3, 4])
+]
+```
+
+> For each algorithm, 1, 2, 3 and 4 claraprints are used to generate a reference claraprint.
+
+Report the first (MT10) score for each num_source in file [generate_multiple_source_line.py](figures/generate_multiple_source_line.py):
+
+```python
+df = pd.DataFrame({
+    'x': range(1, 5),
+    'ch@MT10': np.array([0.91, 0.94, 0.97, 0.98]),
+    'cr@MT10': np.array([0.87, 0.92, 0.94, 0.97]),
+    'me@MT10': np.array([0.80, 0.83, 0.87, 0.91]),
+    'mp@MT10': np.array([0.63, 0.64, 0.67, 0.73]),
+
+    'ch@MT1': np.array([0.84, 0.87, 0.91, 0.95]),
+    'cr@MT1': np.array([0.72, 0.77, 0.81, 0.85]),
+    'me@MT1': np.array([0.57, 0.64, 0.69, 0.73]),
+    'mp@MT1': np.array([0.43, 0.40, 0.44, 0.53])
+})
+
+```
+
+> For example, in line `'ch@MT10': np.array([0.91, 0.94, 0.97, 0.98])`, 0.91 is MT10 for algo chords_chordino (ch) for one source fingerprint, and 0.94 for two sources, etc.
+
+Run the script [generate_multiple_source_line.py](figures/generate_multiple_source_line.py), 
+which will generate figure [multiple_source_line.png](figures/multiple_source_line.png)
