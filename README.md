@@ -71,8 +71,13 @@ docker.elastic.co/elasticsearch/elasticsearch:7.6.2
 
 The main experiment file script is [es_multiple_fp_generated](experiments/es_multiple_fp_generated/es_multiple_fp_generated.py).
  It allows to run different experiments, and not only multiple fingerprint ones, as the name of the file suggests.
+ Clone this repository and go to the main `claraprint/` folder.
  
-#### Preparation
+#### Download the dataset
+
+Download the dataset `dataset_rdb_100.jams.json` in folder `dataset`.
+
+#### Configuration
 
 Before running an experiment, open the file, and edit the `configs_to_run` variable. Here is an example of its value:
 
@@ -115,7 +120,63 @@ can be found in the source file, and is repeated here:
 Run the experiment with the command:
 
 ```shell script
-
+PYTHONPATH=. python experiments/es_multiple_fp_generated/es_multiple_fp_generated.py
 ```
 
+The result output will look like the following:
+
+```shell script
+algo=chords_chordino,#sources=1,dur=120,search_func=<function es_search at 0x7fc17c381c80>,num_bests=[10, 5, 1],ranges=2_7,time_insert=0.004182252782344118,time_query=0.007569167613983154,scores=0.92 0.90 0.84
+algo=chords_crema,#sources=1,dur=120,search_func=<function es_search at 0x7fc17c381c80>,num_bests=[10, 5, 1],ranges=2_7,time_insert=0.0055517343672130195,time_query=0.0060963606834411625,scores=0.89 0.85 0.73
+algo=melody_melodia,#sources=1,dur=120,search_func=<function es_search at 0x7fc17c381c80>,num_bests=[10, 5, 1],ranges=2_7,time_insert=0.006374508779975532,time_query=0.009945457935333251,scores=0.80 0.73 0.58
+algo=melody_piptrack,#sources=1,dur=120,search_func=<function es_search at 0x7fc17c381c80>,num_bests=[10, 5, 1],ranges=2_7,time_insert=0.006635935948595122,time_query=0.015183436393737792,scores=0.83 0.77 0.60
+```
+
+Each line is one configuration. The parameters are displayed inline as a reminder of the set configuration.
+
+The most important part is the last part of this output:
+```shell script
+scores=0.92 0.90 0.84
+scores=0.89 0.85 0.73
+scores=0.80 0.73 0.58
+scores=0.83 0.77 0.60
+```
+
+Each score contains three values, because here `num_best=[10, 5, 1]`. The first value is the percentage of fingerprints 
+found in the first 10 results (MT10 in the paper), the second one in the first 5 results (MT5) and the last one as 
+the first result (MT1) of the fingerprint search.  
+
 ### Generate figures in the paper
+
+#### Figure 2: Mean value of true positive in top 10 for claraprints computed on the first 30s and 120s.
+
+![Figure 2](figures/graph_compare_algos_duration.png)
+
+Run the experiment with the following configurations:
+
+```python
+configs_to_run = [
+    Config(algo="chords_chordino", duration=30, letters_to_use=1, range_words=[range(2, 8)], num_sources=[1]),
+    Config(algo="chords_crema", duration=30, letters_to_use=1, range_words=[range(2, 8)], num_sources=[1]),
+    Config(algo="melody_melodia", duration=30, letters_to_use=3, range_words=[range(2, 8)], num_sources=[1]),
+    Config(algo="melody_piptrack", duration=30, letters_to_use=3, range_words=[range(2, 8)], num_sources=[1]),
+
+    Config(algo="chords_chordino", duration=120, letters_to_use=1, range_words=[range(2, 8)], num_sources=[1]),
+    Config(algo="chords_crema", duration=120, letters_to_use=1, range_words=[range(2, 8)], num_sources=[1]),
+    Config(algo="melody_melodia", duration=120, letters_to_use=3, range_words=[range(2, 8)], num_sources=[1]),
+    Config(algo="melody_piptrack", duration=120, letters_to_use=3, range_words=[range(2, 8)], num_sources=[1]),
+]
+```
+
+The first 4 are testing the 4 algos against 30s claraprints, and the last 4 against 120s claraprints.
+
+Report the first score for each in the following lines of file [figures/generate_graph_compare_algos_duration.py](generate_graph_compare_algos_duration.py):
+
+```python
+chord_chordino_means = [0.66, 0.92]
+chord_crema_means = [0.71, 0.88]
+melody_melodia_means = [0.60, 0.80]
+melody_piptrack_means = [0.83, 0.82]
+```
+
+Run the script [figures/generate_graph_compare_algos_duration.py](generate_graph_compare_algos_duration.py), which will generate figure [figures/graph_compare_algos_duration.png](graph_compare_algos_duration.png)
