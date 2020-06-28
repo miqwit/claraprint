@@ -3,4 +3,5 @@ librosa==0.7.2
 # and not with librosa==0.5
 crema==0.1.0
 vamp==1.1.0
-python-Levenshtein
+python-Levenshtein==0.12.0
+elasticsearch==7.6.0
