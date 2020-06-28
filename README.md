@@ -246,7 +246,7 @@ me_mp_means = [0.83, 0.62]
 Run the script [generate_graph_compare_algos_multiple.py](figures/generate_graph_compare_algos_multiple.py), 
 which will generate figure [graph_compare_algos_multiple.png](figures/graph_compare_algos_multiple.png)
 
-#### Figure 4 Mean value of true positive in top 10 (MT10) and first (MT1) position of combined [2-7]-shingled claraprints.
+#### Figure 5 Mean value @10 and @1 of multiple-recording [2-7]-shingled claraprint combination, from 1 to 4 recordings of the same piece.
 
 ![Figure 5](figures/multiple_source_line.png)
 
@@ -285,3 +285,23 @@ df = pd.DataFrame({
 
 Run the script [generate_multiple_source_line.py](figures/generate_multiple_source_line.py), 
 which will generate figure [multiple_source_line.png](figures/multiple_source_line.png)
+
+#### Figure 6 he average, minimal, maximal and standard deviation of pair-wise comparison of claraprints within the same clique, with the Levenshtein similarity algorithm (plain claraprints) and the common words in [2-7]-shingled claraprints.
+
+![Figure 6](figures/error_bar_distance.png)
+
+This figure is not the result of an experiment, but rather a measure of the dataset. Nevertheless, the script to generate
+the data is located in [experiments/clique_distances/similarity_chord_per_work.py](experiments/clique_distances/similarity_chord_per_work.py).
+
+Just execute this file and report the values in the file [figures/generate_error_bar_distance.py](figures/generate_error_bar_distance.py):
+
+```python
+lev_chord = np.array([[29.856, 26.357, 71.939, 105.469],
+                      [3.3, 1.7, 17.2, 50.],
+                      [81.4, 64., 350.9, 191.8],
+                      [12.7801277, 11.40262474, 51.63729833, 27.97021164]])
+```
+
+Run the script [figures/generate_error_bar_distance.py](figures/generate_error_bar_distance.py), 
+which will generate figure [figures/error_bar_distance.png](figures/error_bar_distance.png)
+
