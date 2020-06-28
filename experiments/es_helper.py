@@ -3,10 +3,14 @@ This file contains ES (elasticseach) functions that can be reused in multiple ES
 Each experiment can override one of these methods for its particular need
 """
 
-from utils_es import store_one_fingerprint, create_index, es, es_index
-from utils_experiments import get_all_fingerprints_by_rdb_id, get_all_fingerprints, fingerprint_from_n_sources
+from elasticsearch import Elasticsearch
+from utils_experiments import get_all_fingerprints
 from utils import fingerprints_to_words
+from config import es_host, es_port, es_index
 import time
+
+es = Elasticsearch([{'host': es_host, 'port': es_port}])
+
 
 # ES tools for this experiment
 def create_index(lower, higher):
