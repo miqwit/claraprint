@@ -75,7 +75,8 @@ The main experiment file script is [es_multiple_fp_generated](experiments/es_mul
  
 #### Download the dataset
 
-Download the dataset `dataset_rdb_100.jams.json` in folder `dataset`.
+Download the dataset `dataset_rdb_100.jams.json.gz` from this URL: [https://zenodo.org/record/3911754#.XvjP-JY69Uw](https://zenodo.org/record/3911754#.XvjP-JY69Uw)
+ and unzip it in folder `dataset`.
 
 #### Configuration
 
