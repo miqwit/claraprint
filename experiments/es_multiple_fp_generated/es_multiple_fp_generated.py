@@ -11,7 +11,7 @@ parameter to the experiment: combination_mode)
 """
 
 from utils_experiments import get_all_fingerprints_by_rdb_id, get_all_fingerprints, fingerprint_from_n_sources, fingerprint_from_one_random
-from experiments.es_helper import es_search, create_index, store_one_fingerprint, generic_score_by_es_search, es_refresh
+from experiments.es_helper import es_search, create_index, store_one_fingerprint, generic_score_by_es_search, es_refresh, es_search_shingle, store_one_fingerprint_shingle, create_index_shingle
 from collections import namedtuple
 import numpy as np
 import time

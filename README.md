@@ -201,11 +201,47 @@ configs_to_run = [
 Report the first (MT10) and last (MT1) scores in file [generate_graph_compare_algos.py](figures/generate_graph_compare_algos.py):
 
 ```python
-chord_chordino_means = [0.66, 0.92]
-chord_crema_means = [0.71, 0.88]
-melody_melodia_means = [0.60, 0.80]
-melody_piptrack_means = [0.83, 0.82]
+chord_chordino_means = [0.92, 0.84]
+chord_crema_means = [0.89, 0.73]
+melody_melodia_means = [0.79, 0.58]
+melody_piptrack_means = [0.82, 0.60]
 ```
 
 Run the script [generate_graph_compare_algos.py](figures/generate_graph_compare_algos.py), 
 which will generate figure [graph_compare_algos_duration.png](figures/graph_compare_algos_duration.png)
+
+#### Figure 4 Mean value of true positive in top 10 (MT10) and first (MT1) position of combined [2-7]-shingled claraprints.
+
+![Figure 4](figures/graph_compare_algos.png)
+
+For this one, the used experiment is not the "usual" ones, as explained in previous section, but the one located in
+[es_cross_sources.py](experiments/es_cross_sources/es_cross_sources.py) file. It is the same logic, although the 
+configuration parameters may differ a little bit.
+
+```python
+configs_to_run = [
+    Config(algos=["chords_chordino", "melody_melodia"], range_words=[range(2, 8)], search_func=es_search_shingle),
+    Config(algos=["chords_chordino", "melody_piptrack"], range_words=[range(2, 8)], search_func=es_search_shingle),
+    Config(algos=["chords_crema", "melody_melodia"], range_words=[range(2, 8)], search_func=es_search_shingle),
+    Config(algos=["chords_crema", "melody_piptrack"], range_words=[range(2, 8)], search_func=es_search_shingle),
+    Config(algos=["chords_chordino", "chords_crema"], range_words=[range(2, 8)], search_func=es_search_shingle),
+    Config(algos=["melody_melodia", "melody_piptrack"], range_words=[range(2, 8)], search_func=es_search_shingle),
+]
+```
+
+> Each configuration is combining a chord algo with a melody algo. All configuration are tested and compared.
+
+Report the first (MT10) and last (MT1) scores in file [generate_graph_compare_algos_multiple.py](figures/generate_graph_compare_algos_multiple.py):
+
+```python
+ch_me_means = [0.91, 0.78]
+ch_mp_means = [0.88, 0.76]
+cr_me_means = [0.86, 0.72]
+cr_mp_means = [0.84, 0.68]
+ch_cr_means = [0.91, 0.82]
+me_mp_means = [0.83, 0.62]
+
+```
+
+Run the script [generate_graph_compare_algos_multiple.py](figures/generate_graph_compare_algos_multiple.py), 
+which will generate figure [graph_compare_algos.png](figures/graph_compare_algos.png)
