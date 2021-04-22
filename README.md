@@ -16,7 +16,7 @@ After referencing this code in your project, run the following commands.
 ### Build a claraprint
 
 ```python
-from claraprint import claraprint
+from fingerprint import claraprint
 
 algo = "chords_chordino"
 # can also be "chords_crema", "melody_piptrack", "melody_melodia"
